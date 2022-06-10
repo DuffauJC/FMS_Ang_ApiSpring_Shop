@@ -1,21 +1,21 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
-import { GetAllTrainingsAction } from 'src/app/state/trainings.action';
-import { selectAllTrainings } from 'src/app/state/trainings.selectors';
-import { Training } from '../../model/training.model';
+import { GetAllArticlesAction } from 'src/app/state/articles.action';
+import { selectAllArticles } from 'src/app/state/articles.selectors';
+import { Article } from '../../model/article.model';
 import { CartService } from '../../services/cart.service';
 
 @Component({
-  selector: 'app-trainings',
-  templateUrl: './trainings.component.html',
+  selector: 'app-Articles',
+  templateUrl: './Articles.component.html',
 })
 
-export class TrainingsComponent implements OnInit, DoCheck {
+export class ArticlesComponent implements OnInit, DoCheck {
 
-  trainings$: Observable<Training[]> | null = null
+  articles$: Observable<Article[]> | null = null
 
-  listTrainings: Training[] | undefined
+  listArticles: Article[] | undefined
   error = null
 
   constructor(private cartService: CartService,
@@ -23,8 +23,8 @@ export class TrainingsComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new GetAllTrainingsAction({}));
-    this.trainings$ = this.store.select(selectAllTrainings).pipe(
+    this.store.dispatch(new GetAllArticlesAction({}));
+    this.articles$ = this.store.select(selectAllArticles).pipe(
       map((state) => state));
   }
   ngDoCheck(): void {
@@ -32,9 +32,9 @@ export class TrainingsComponent implements OnInit, DoCheck {
 
   }
 
-  onAddToCart(training: Training) {
+  onAddToCart(article: Article) {
     //this.display = true
-    this.cartService.addTraining(training)
+    this.cartService.addArticle(article)
     this.remClick()
 
   }

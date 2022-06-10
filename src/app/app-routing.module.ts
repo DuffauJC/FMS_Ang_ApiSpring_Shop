@@ -5,7 +5,7 @@ import { AuthGuard } from './components/_helpers/authGuard.components';
 import { Role } from './model/role';
 
 
-import { TrainingsComponent } from './components/trainings/trainings.component';
+import { ArticlesComponent } from './components/articles/articles.component';
 import { CaddyComponent } from './components/caddy/caddy.component';
 import { NotFoundComponent } from './components/notFound/notFound.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -13,12 +13,12 @@ import { HomeComponent } from './components/home/home.component';
 import { OrderComponent } from './components/order/order.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeAdminComponent } from './components/admin/homeAdmin.component';
-import { AddTrainingComponent } from './components/admin/addTraining/addTraining.component';
-import { ListTrainingComponent } from './components/admin/listTraining/listTraining.component';
+import { AddArticleComponent } from './components/admin/addArticle/addArticle.component';
+import { ListArticlesComponent } from './components/admin/listArticle/listArticles.component';
 
 
 const routes: Routes = [
-  { path: 'trainings',component:TrainingsComponent  },
+  { path: 'articles',component:ArticlesComponent  },
   {path: 'caddy', component: CaddyComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
@@ -33,14 +33,14 @@ const routes: Routes = [
     data: { roles: [Role.Admin] }
   },
   {
-    path: 'addTraining',
-    component: AddTrainingComponent,
+    path: 'addArticle',
+    component: AddArticleComponent,
     canActivate: [AuthGuard],
     data: { roles: [Role.Admin] }
   },
   {
-    path: 'listTrainings',
-    component: ListTrainingComponent,
+    path: 'listArticles',
+    component: ListArticlesComponent,
     canActivate: [AuthGuard],
     data: { roles: [Role.Admin] }
   },

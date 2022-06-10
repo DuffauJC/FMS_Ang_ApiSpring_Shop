@@ -1,34 +1,37 @@
 <div class="container">
 
-  <div *ngIf="trainings$ | async as state" class="md-6 d-flex flex-wrap listAdmin">
+  <div *ngIf="articles$ | async as state" class="md-6 d-flex flex-wrap listAdmin">
     <!-- product -->
-    <div *ngFor="let training of state">
+    <div *ngFor="let article of state">
       <div class="product-content product-wrap">
         <div class="row">
           <div class="col-md-5 col-sm-12 col-xs-12">
             <div class="product-image">
-              <img src="{{training.imgURL}}" alt="194x228" class="img-responsive">
+              <img src="../../../assets/img/unknown.png" alt="194x228" class="img-responsive">
             </div>
           </div>
           <div class="col-md-7 col-sm-12 col-xs-12">
             <div class="product-deatil">
               <h4 class="name">
-                {{training.name}}
+                {{article.brand}}
               </h4>
               <p class="price-container">
-                <span>{{training.price}} €</span>
+                <span>{{article.unitaryPrice}} €</span>
               </p>
               <span class="tag1"></span>
             </div>
             <div class="description">
-              <h6>{{training.description}}</h6>
+              <h6>{{article.description}}</h6>
+            </div>
+            <div class="cat-name">
+              <h6>{{article.category.name}}</h6>
             </div>
             <div class="product-info smart-form">
               <div class="row">
                 <div class="sold_stars ml-auto"> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i
                     class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
                 </div>
-                <button class="cart-button" (click)="onAddToCart(training)"> <span class=" add-to-cart">Add to
+                <button class="cart-button" (click)="onAddToCart(article)"> <span class=" add-to-cart">Add to
                     cart</span>
                   <span class="added">Item
                     added</span> <i class="fa fa-plus"></i> <i class="fa fa-circle-thin"></i> <i

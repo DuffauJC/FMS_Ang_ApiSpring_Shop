@@ -1,5 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { Training } from '../../model/training.model';
+import { Article } from '../../model/article.model';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/services/authentificate.service';
@@ -9,7 +9,7 @@ import { AuthenticateService } from 'src/app/services/authentificate.service';
 })
 
 export class CaddyComponent implements OnInit, DoCheck {
-    listCaddy: Training[] | undefined
+    listCaddy: Article[] | undefined
     total = 0
     display = false
     problemOrder = false
@@ -40,7 +40,7 @@ export class CaddyComponent implements OnInit, DoCheck {
     }
 
     // delete item from caddy
-    onDelToCart(item: Training) {
+    onDelToCart(item: Article) {
         this.cartService.delStorage(item)
     }
     clearCart() {

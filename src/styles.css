@@ -52,6 +52,7 @@ li {
 .logo {
   margin-right: 20px;
   margin-left: 20px;
+  width: 64px;
 }
 
 .welcome {
@@ -180,7 +181,11 @@ li {
   border: 1px solid coral;
   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
 }
-
+.cat-name{
+  text-decoration: underline;
+  margin-left: 20px;
+  color: red;
+}
 /* bouton ajout panier ****************************/
 
 .cart-button {

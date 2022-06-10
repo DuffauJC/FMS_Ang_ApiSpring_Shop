@@ -3,23 +3,23 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Observable,map, mergeMap, catchError, EMPTY } from 'rxjs';
 import { ApiService } from '../services/api.service'
 
-import { TrainingsActions, TrainingsActionsTypes,GetAllTrainingsActionError,GetAllTrainingsActionSuccess } from './trainings.action';
+import { ArticlesActions, ArticlesActionsTypes,GetAllArticlesActionSuccess } from './articles.action';
 @Injectable()
     
-export class TrainingsEffects {
+export class ArticlesEffects {
 
     constructor(
         private effectActions$: Actions,
         private apiService: ApiService
     ) { }
 
-    getAllTrainings$ = createEffect(
+    getAllArticles$ = createEffect(
         () => 
        this.effectActions$.pipe(
-            ofType(TrainingsActionsTypes.GET_ALL_TRAININGS),
-            mergeMap((action: TrainingsActions) => this.apiService.getTrainings()
+            ofType(ArticlesActionsTypes.GET_ALL_ARTICLES),
+            mergeMap((action: ArticlesActions) => this.apiService.getArticles()
                 .pipe(
-                    map((trainings) => new GetAllTrainingsActionSuccess(trainings)),
+                    map((Articles) => new GetAllArticlesActionSuccess(Articles)),
                     catchError(() =>EMPTY))
                 )
             )

@@ -1,18 +1,18 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Training } from 'src/app/model/training.model';
+import { Article } from 'src/app/model/article.model';
 import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-    selector: 'app-listtraining',
-    templateUrl: 'listTraining.component.html'
+    selector: 'app-listArticles',
+    templateUrl: 'listArticles.component.html'
 })
 
-export class ListTrainingComponent implements OnInit, DoCheck {
+export class ListArticlesComponent implements OnInit, DoCheck {
     ngForm: FormGroup
-    listTrainings: Training[] | undefined
+    listArticles: Article[] | undefined
     error = null
     displayStyle = "none";
     displayBlur = "blur(0)"
@@ -51,15 +51,15 @@ export class ListTrainingComponent implements OnInit, DoCheck {
         })
     }
     ngOnInit() {
-        this.getAllTrainings()
+        this.getAllArticles()
     }
     ngDoCheck(): void {
         this.verifySession()
     }
 
-    getAllTrainings() {
-        this.apiService.getTrainings().subscribe({
-            next: (data) => this.listTrainings = data,
+    getAllArticles() {
+        this.apiService.getArticles().subscribe({
+            next: (data) => this.listArticles = data,
             error: (err) => this.error = err.message,
             complete: () => this.error = null
 
@@ -76,37 +76,37 @@ export class ListTrainingComponent implements OnInit, DoCheck {
             }, 1500)
         }
     }
-    delItem(training: Training) {
+    delItem(Article: Article) {
         if (confirm("Vous êtes sur de vouloir supprimer cette formation ?")) {
-            this.apiService.delItem(training)
+            this.apiService.delItem(Article)
                 .subscribe({
                     next: (data) => console.log(data),
                     error: (err) => this.error = err.message,
-                    complete: () => this.getAllTrainings()
+                    complete: () => this.getAllArticles()
             })
         }
 
     }
-    openPopup(training: Training) {
+    openPopup(Article: Article) {
         this.displayStyle = "block";
         this.displayBlur = "blur(4px)"
 
-        this.ngForm = new FormGroup({
-            name: new FormControl(training.name),
-            description: new FormControl(training.description),
-            price: new FormControl(training.price),
-            quantity: new FormControl(training.quantity),
-            imgURL: new FormControl(training.imgURL),
+        // this.ngForm = new FormGroup({
+        //     name: new FormControl(Article.name),
+        //     description: new FormControl(Article.description),
+        //     price: new FormControl(Article.price),
+        //     quantity: new FormControl(Article.quantity),
+        //     imgURL: new FormControl(Article.imgURL),
 
-        })
-        this.data.imgURL = training.imgURL
-        this.data.id = training.id
+        // })
+        this.data.imgURL = Article.imgURL
+        this.data.id = Article.id
     }
     closePopup() {
         this.displayStyle = "none";
         this.displayBlur = "blur(0)"
     }
-    onUpdateTraining(form: FormGroup) {
+    onUpdateArticle(form: FormGroup) {
 
         //console.log(form.value)
 
@@ -118,11 +118,11 @@ export class ListTrainingComponent implements OnInit, DoCheck {
 
         document.getElementById('modal-btn')?.classList.toggle('is_active')
 
-        this.apiService.updateTraining(this.data)
+        this.apiService.updateArticle(this.data)
             .subscribe({
                 next: (data) => console.log(data),
                 error: (err) => this.error = err.message,
-                complete: () => this.getAllTrainings()
+                complete: () => this.getAllArticles()
         })
         this.display = true
 

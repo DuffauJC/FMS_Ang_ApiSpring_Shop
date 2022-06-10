@@ -1,5 +1,5 @@
 import { Customer } from "./customer.model";
-import { Training } from "./training.model";
+import { Training } from "./article.model";
 
 export class Cart {
     customer : Customer;

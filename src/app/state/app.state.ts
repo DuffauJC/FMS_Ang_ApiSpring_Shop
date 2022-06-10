@@ -1,11 +1,11 @@
-import { Training } from "../model/training.model";
+import { Article } from "../model/article.model";
 
 export interface AppState {
-    trainings: Training[];  
+   articles: Article[];  
     errorMessage: string;
 }
 
 export const initState: AppState= {
-    trainings: [],
+    articles: [],
     errorMessage: "",
 }

@@ -2,7 +2,7 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { CartService } from './services/cart.service';
 import { Customer } from './model/customer.model';
-import { GetAllTrainingsAction } from './state/trainings.action';
+import { GetAllArticlesAction } from './state/articles.action';
 import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-root',
@@ -57,9 +57,9 @@ export class AppComponent implements OnInit, DoCheck {
     this.logout = false
     this.admin = false
   }
-  getAllTrainings() {
+  getAllArticles() {
     //User a cliqué sur le bouton afficher tous les produits aussi il faut dispatcher l'action à l'aide du store
-    this.store.dispatch(new GetAllTrainingsAction({}));
+    this.store.dispatch(new GetAllArticlesAction({}));
     //Le reducer et l'effect ont reçu la notification du Store et ils ont pris le relais chacun de son côté
   }
 
