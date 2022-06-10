@@ -1,0 +1,154 @@
+{
+  "trainings": [
+    {
+      "id": 1,
+      "name": "Java-Bien",
+      "description": "Formation Java SE 8 sur 5 jours",
+      "price": "2800",
+      "quantity": 1,
+      "imgURL": "assets/img/java.png"
+    },
+    {
+      "id": 2,
+      "name": "Dotnet",
+      "description": "Formation JDotNet sur 3 jours",
+      "price": 1000,
+      "quantity": 1,
+      "imgURL": "assets/img/visual-basic.png"
+    },
+    {
+      "id": 3,
+      "name": "Python",
+      "description": "Formation Python/Django 5 jours",
+      "price": 1500,
+      "quantity": 1,
+      "imgURL": "assets/img/python.png"
+    },
+    {
+      "id": 4,
+      "name": "Php",
+      "description": "Initation au Dev/Web 4 jours",
+      "price": 1300,
+      "quantity": 1,
+      "imgURL": "assets/img/php.png"
+    },
+    {
+      "id": 5,
+      "name": "NodeJs",
+      "description": "Formation NodeJs/Express 2 jours",
+      "price": 1400,
+      "quantity": 1,
+      "imgURL": "assets/img/nodejs.png"
+    },
+    {
+      "id": 6,
+      "name": "Java Avancé",
+      "description": "Formation java avancé/Bdd 3 jours",
+      "price": 1200,
+      "quantity": 1,
+      "imgURL": "assets/img/java.png"
+    },
+    {
+      "id": 7,
+      "name": "React",
+      "description": "Formation React/Front 13 jours",
+      "price": 1200,
+      "quantity": 1,
+      "imgURL": "assets/img/react.png"
+    },
+    {
+      "id": 8,
+      "name": "Github",
+      "description": "Formation Git/Github 10 jours",
+      "price": 1600,
+      "quantity": 1,
+      "imgURL": "assets/img/github.png"
+    },
+    {
+      "name": "C ++",
+      "description": "Formation sur 25 ans conceptuellement...",
+      "price": "9999.99",
+      "quantity": 1,
+      "imgURL": "assets/img/c-.png",
+      "id": 9
+    },
+    {
+      "name": "Javascript",
+      "description": "L'histoire d'une vie",
+      "price": "1400",
+      "quantity": 1,
+      "imgURL": "assets/img/js.png",
+      "id": 10
+    },
+    {
+      "id": 12,
+      "name": "CSS 3",
+      "description": "Découverte des feuilles de style",
+      "price": "8500",
+      "quantity": 0,
+      "imgURL": "assets/img/css-3.png"
+    }
+  ],
+  "customers": [
+    {
+      "name": "Duffau",
+      "firstName": "Jean-Charles",
+      "address": "887 rte",
+      "phoneNumber": "0605",
+      "email": "jcd@fr",
+      "id": 1,
+      "password": "MjV0eTUw",
+      "role": "admin"
+    },
+    {
+      "address": "25, rue de la carotte",
+      "email": "rabbit@free.fr",
+      "firstName": "Roger",
+      "name": "Rabbit",
+      "password": "YXE0NTg4",
+      "phoneNumber": "4578",
+      "role": "customer",
+      "id": 2
+    },
+    {
+      "name": "Jones",
+      "firstName": "Indiana",
+      "address": "457 av",
+      "email": "jones@yahoo.com",
+      "phoneNumber": "47852",
+      "password": "cXc0NTY=",
+      "role": "customer",
+      "id": 3
+    },
+    {
+      "name": "Daumas",
+      "firstName": "Caroline",
+      "address": "St-Cyprien",
+      "email": "caro@free.fr",
+      "phoneNumber": "0605",
+      "password": "YXplcnR5",
+      "role": "customer",
+      "id": 4
+    },
+    {
+      "name": "Lozzi",
+      "firstName": "Christophe",
+      "address": "Balma",
+      "email": "christoof@yahoo.fr",
+      "phoneNumber": "0605",
+      "password": "MTIzNDU2",
+      "role": "",
+      "id": 5
+    },
+    {
+      "name": "Lefort",
+      "firstName": "SarahLune,",
+      "address": "Moon-City",
+      "email": "sarah@gmail.com",
+      "phoneNumber": "0605",
+      "password": "YXplcnR5",
+      "role": "customer",
+      "id": 6
+    }
+  ]
+}

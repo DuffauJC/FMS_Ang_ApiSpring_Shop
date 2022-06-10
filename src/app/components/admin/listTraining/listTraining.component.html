@@ -1,0 +1,107 @@
+<div class="container" [ngStyle]="{'filter':displayBlur}">
+
+  <div *ngIf="listTrainings else loading" class="md-6 d-flex flex-wrap listAdmin">
+    <!-- product -->
+    <div *ngFor="let training of listTrainings">
+      <div class="product-content product-wrap" id="item-{{training.id}}">
+        <div class="row">
+          <div class="col-md-5 col-sm-12 col-xs-12">
+            <div class="product-image">
+              <img src="{{training.imgURL}}" alt="194x228" class="img-responsive">
+            </div>
+          </div>
+          <div class="col-md-7 col-sm-12 col-xs-12">
+            <div class="product-deatil">
+              <h4 class="name">
+                {{training.name}}
+              </h4>
+              <p class="price-container">
+                <span>{{training.price}} €</span>
+              </p>
+              <a class="x-del" (click)="delItem(training)"><img src="../../../assets/img/x-button.png"
+                  alt="delete"></a>
+              <!-- Button trigger modal -->
+              <a class="" (click)="openPopup(training)"><img class="x-edit" src="../../../assets/img/edit.png"
+                  alt="edit"></a>
+            </div>
+            <div class="description">
+              <h6>{{training.description}}</h6>
+
+            </div>
+            <div class="product-info smart-form">
+              <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6 d-flex">
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end product -->
+  </div>
+
+  <ng-template #loading>
+    <div>Loading...</div>
+  </ng-template>
+
+</div>
+
+<!-- Modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" id="modalSize">
+      <div class="modal-header">
+        <button type="button" data-dismiss="modal" aria-label="Close" (click)="closePopup()"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit</h4>
+      </div>
+      <div class="modal-body">
+        <div class="login-container animated fadeInDown bootstrap snippets bootdeys">
+          <div class="loginbox bg-white">
+            <div class="loginbox-social">
+              <div class="social-title ">
+                <img src="{{data.imgURL}}" alt="194x228" class="img-responsive">
+              </div>
+            </div>
+            <form [formGroup]="ngForm" (ngSubmit)="onUpdateTraining(ngForm)">
+              <div class="loginbox-textbox">
+                <input type="text" name="name" class="form-control" placeholder="Nom" formControlName="name">
+              </div>
+              <div class="loginbox-textbox">
+                <input type="text" name="description" class="form-control" placeholder="Description"
+                  formControlName="description">
+              </div>
+              <div class="loginbox-textbox">
+                <input type="text" name="price" class="form-control" placeholder="prix" f formControlName="price">
+              </div>
+              <div class="loginbox-textbox">
+                <input type="text" name="imgURL" class="form-control" placeholder="imgURL" formControlName="imgURL">
+              </div>
+              <div class="loginbox-submit">
+                <button type="submit" [disabled]="!ngForm.valid" class="btn btn-success btn-block" id="modal-btn">
+                  <span>Submit</span>
+                  <div class="success">
+                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 29.756 29.756"
+                      style="enable-background:new 0 0 29.756 29.756;" xml:space="preserve">
+
+                      <path
+                        d="M29.049,5.009L28.19,4.151c-0.943-0.945-2.488-0.945-3.434,0L10.172,18.737l-5.175-5.173   c-0.943-0.944-2.489-0.944-3.432,0.001l-0.858,0.857c-0.943,0.944-0.943,2.489,0,3.433l7.744,7.752   c0.944,0.943,2.489,0.943,3.433,0L29.049,8.442C29.991,7.498,29.991,5.953,29.049,5.009z" />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+              <div *ngIf="display" class=" alert alert-success col-md-12">
+                Formation modifiée.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="problemAdmin" class=" alert alert-danger col-md-12 ">
+    Vous avec été déconnécté, reconnectez-vous.
+  </div>
