@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpParams } from '@angular/common/http';
-import { Article } from '../model/article.model';
+import { Training } from '../model/training.model';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../model/customer.model';
 import { Observable } from 'rxjs';
@@ -9,26 +9,26 @@ import { Observable } from 'rxjs';
 
 export class ApiService {
     constructor(private http: HttpClient) { }
-    //Article
-    public getArticles():Observable<Article[]> {
-        return this.http.get<Article[]>(environment.host + "/articles")
+    //Training
+    public getTrainings():Observable<Training[]> {
+        return this.http.get<Training[]>(environment.host + "/trainings")
     }
-    public getArticleById(id: number) {
-        return this.http.get<Article>(environment.host + "/articles/" + id);
+    public getTrainingById(id: number) {
+        return this.http.get<Training>(environment.host + "/trainings/" + id);
     }
-    public postArticle(data: any) {
+    public postTraining(data: any) {
         //console.log(data);
-       return this.http.post<any>(environment.host + "/articles", data)
+       return this.http.post<any>(environment.host + "/trainings", data)
           
     }
-    public delItem(Article: Article) {
-        //console.log(Article)
-       return this.http.delete(environment.host + "/articles/" + Article.id)
+    public delItem(Training: Training) {
+        //console.log(Training)
+       return this.http.delete(environment.host + "/trainings/" + Training.id)
           
     }
-    public updateArticle(data: any) {
+    public updateTraining(data: any) {
         //console.log(data);
-       return this.http.put<any>(environment.host + "/articles/" + data.id, data)
+       return this.http.put<any>(environment.host + "/trainings/" + data.id, data)
        
     }
     // save customer in bdd

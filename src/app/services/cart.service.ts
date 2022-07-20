@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Article } from '../model/article.model';
+import { Training } from '../model/training.model';
 
 
 @Injectable({
@@ -7,7 +7,7 @@ import { Article } from '../model/article.model';
 })
 export class CartService {
   // pour ranger les données du storage
-  private cart: Map<number, Article>;
+  private cart: Map<number, Training>;
   //Initialisation du local storage (panier)
   caddy = window.localStorage;
 
@@ -17,16 +17,16 @@ export class CartService {
     if (cart) {  // le panier existe déjà
       this.cart = new Map(JSON.parse(cart));
     } // sinon il faut le créer
-    else this.cart = new Map<number, Article>();
+    else this.cart = new Map<number, Training>();
   }
 
   // add item to locastorage
-  addArticle(article: Article) {
-    let tr=this.cart.get(article.id)
+  addTraining(Training: Training) {
+    let tr=this.cart.get(Training.id)
     if (tr) {
-     tr.qty+=article.qty
+     tr.quantity+=Training.quantity
     } else {
-      this.cart.set(article.id, article);
+      this.cart.set(Training.id, Training);
     }
     this.saveCart(); //à chaque fois que j'ajoute un élément au panier, je met à jour le local storage
 
@@ -42,8 +42,8 @@ export class CartService {
   // methode return total caddy
   getTotal() {
     let amount = 0;
-    this.cart.forEach(article => {
-      amount += article.unitaryPrice * article.qty;
+    this.cart.forEach(Training => {
+      amount += Training.price * Training.quantity;
     });
     return amount;
   }
@@ -52,7 +52,7 @@ export class CartService {
    return this.cart.size
   }
   // delete item from localstorage
-  delStorage(item: Article) {
+  delStorage(item: Training) {
     this.cart.delete(item.id);
     this.saveCart();
 

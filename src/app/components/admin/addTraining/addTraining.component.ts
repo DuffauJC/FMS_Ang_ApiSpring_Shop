@@ -6,11 +6,11 @@ import { ApiService } from 'src/app/services/api.service';
 
 
 @Component({
-    selector: 'app-addArticle',
-    templateUrl: 'addArticle.component.html'
+    selector: 'app-addTraining',
+    templateUrl: 'addTraining.component.html'
 })
 
-export class AddArticleComponent implements OnInit, DoCheck {
+export class AddTrainingComponent implements OnInit, DoCheck {
     ngForm: FormGroup
     display = false
     problemAdmin = false
@@ -55,7 +55,7 @@ export class AddArticleComponent implements OnInit, DoCheck {
             }, 1500)
         }
     }
-    onSaveArticle(form: FormGroup) {
+    onSaveTraining(form: FormGroup) {
 
         //console.log(form.value)
 
@@ -67,11 +67,11 @@ export class AddArticleComponent implements OnInit, DoCheck {
 
         document.getElementById('modal-btn')?.classList.toggle("is_active")
 
-        this.apiService.postArticle(this.data)
+        this.apiService.postTraining(this.data)
             .subscribe({
                 next: (data) => console.log(data),
                 error: (err) => this.error = err.message,
-                complete: () => this.router.navigateByUrl('listArticles')
+                complete: () => this.router.navigateByUrl('listTrainings')
             })
         this.display = true
         setTimeout(() => {

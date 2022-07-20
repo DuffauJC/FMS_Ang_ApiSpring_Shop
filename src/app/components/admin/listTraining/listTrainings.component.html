@@ -1,31 +1,29 @@
 <div class="container" [ngStyle]="{'filter':displayBlur}">
 
-  <div *ngIf="listArticles else loading" class="md-6 d-flex flex-wrap listAdmin">
+  <div *ngIf="listTrainings else loading" class="md-6 d-flex flex-wrap listAdmin">
     <!-- product -->
-    <div *ngFor="let article of listArticles">
-      <div class="product-content product-wrap" id="item-{{article.id}}">
+    <div *ngFor="let training of listTrainings">
+      <div class="product-content product-wrap" id="item-{{training.id}}">
         <div class="row">
           <div class="col-md-5 col-sm-12 col-xs-12">
             <div class="product-image">
-              <img src="{{article.imgURL}}" alt="194x228" class="img-responsive">
+              <img src="{{training.imgURL}}" alt="194x228" class="img-responsive">
             </div>
           </div>
           <div class="col-md-7 col-sm-12 col-xs-12">
             <div class="product-deatil">
-              <h4 class="name">
-                {{article.brand}}
-              </h4>
+             
               <p class="price-container">
-                <span>{{article.unitaryPrice}} €</span>
+                <span>{{training.price}} €</span>
               </p>
-              <a class="x-del" (click)="delItem(article)"><img src="../../../assets/img/x-button.png"
+              <a class="x-del" (click)="delItem(training)"><img src="../../../assets/img/x-button.png"
                   alt="delete"></a>
               <!-- Button trigger modal -->
-              <a class="" (click)="openPopup(article)"><img class="x-edit" src="../../../assets/img/edit.png"
+              <a class="" (click)="openPopup(training)"><img class="x-edit" src="../../../assets/img/edit.png"
                   alt="edit"></a>
             </div>
             <div class="description">
-              <h6>{{article.description}}</h6>
+              <h6>{{training.description}}</h6>
 
             </div>
             <div class="product-info smart-form">
@@ -66,7 +64,7 @@
                 <img src="{{data.imgURL}}" alt="194x228" class="img-responsive">
               </div>
             </div>
-            <form [formGroup]="ngForm" (ngSubmit)="onUpdateArticle(ngForm)">
+            <form [formGroup]="ngForm" (ngSubmit)="onUpdateTraining(ngForm)">
               <div class="loginbox-textbox">
                 <input type="text" name="name" class="form-control" placeholder="Nom" formControlName="name">
               </div>

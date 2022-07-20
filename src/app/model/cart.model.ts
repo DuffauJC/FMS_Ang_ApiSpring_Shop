@@ -1,12 +1,12 @@
 import { Customer } from "./customer.model";
-import { Training } from "./article.model";
+import { Article } from "./training.model";
 
 export class Cart {
     customer : Customer;
-    items : Map<number,Training>;
+    items : Map<number,Article>;
 
     constructor(){
-        this.customer = new Customer("unknown","","","","");
-        this.items = new Map<number,Training>();
+        this.customer = new Customer("unknown","","","","","");
+        this.items = new Map<number,Article>();
     }
 }

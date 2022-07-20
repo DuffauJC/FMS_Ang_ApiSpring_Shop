@@ -1,11 +1,10 @@
 import { Category } from "./category.model";
 
-export interface Article {
+export interface Training {
     id: number;
-    brand: string;
     description: string;
-    unitaryPrice: number;
-    qty:number
+    price: number;
+    quantity:number
     imgURL:string
     category:Category
 }

@@ -1,40 +1,40 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { map, Observable } from 'rxjs';
-import { GetAllArticlesAction } from 'src/app/state/articles.action';
-import { selectAllArticles } from 'src/app/state/articles.selectors';
-import { Article } from '../../model/article.model';
+import { ApiService } from 'src/app/services/api.service';
+import { Training } from '../../model/training.model';
 import { CartService } from '../../services/cart.service';
 
 @Component({
-  selector: 'app-Articles',
-  templateUrl: './Articles.component.html',
+  selector: 'app-trainings',
+  templateUrl: 'trainings.component.html',
 })
 
-export class ArticlesComponent implements OnInit, DoCheck {
+export class TrainingsComponent implements OnInit, DoCheck {
 
-  articles$: Observable<Article[]> | null = null
-
-  listArticles: Article[] | undefined
+  listTrainings: Training[] | undefined
   error = null
 
-  constructor(private cartService: CartService,
-    private store: Store<any>) {
+  constructor(private cartService: CartService, private apiService: ApiService,
+   ) {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new GetAllArticlesAction({}));
-    this.articles$ = this.store.select(selectAllArticles).pipe(
-      map((state) => state));
+    this.getAllTrainings()
   }
   ngDoCheck(): void {
     this.findButton()
 
   }
+  getAllTrainings() {
+    this.apiService.getTrainings().subscribe({
+      next: (data) => this.listTrainings = data,
+      error: (err) => this.error = err.message,
+      complete: () => this.error = null
 
-  onAddToCart(article: Article) {
+    })
+  }
+  onAddToCart(Training: Training) {
     //this.display = true
-    this.cartService.addArticle(article)
+    this.cartService.addTraining(Training)
     this.remClick()
 
   }
