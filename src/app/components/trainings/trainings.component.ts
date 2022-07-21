@@ -79,7 +79,7 @@ export class TrainingsComponent implements OnInit, DoCheck {
     this.div.classList.add('clickedCat');
     setTimeout(() => {
       this.div.classList.remove('clickedCat')
-    }, 3000);
+    }, 2000);
   }
   remClick() {
     const cartButtons = document.querySelectorAll('.cart-button');
