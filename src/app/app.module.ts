@@ -6,7 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 import { TrainingsComponent } from './components/trainings/trainings.component';
+import { CategoryTrainingsComponent } from './components/categoryTraining/categoryTrainings.component';
 import { CaddyComponent } from './components/caddy/caddy.component';
 import { RegisterComponent } from './components/register/register.component'
 import { NotFoundComponent } from './components/notFound/notFound.component';
@@ -18,7 +20,9 @@ import { ListTrainingsComponent } from './components/admin/listTraining/listTrai
 @NgModule({
   declarations: [
     AppComponent,
+    CategoriesComponent,
     TrainingsComponent,
+    CategoryTrainingsComponent,
     CaddyComponent,
     RegisterComponent,
     NotFoundComponent,

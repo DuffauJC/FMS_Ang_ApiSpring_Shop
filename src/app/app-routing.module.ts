@@ -4,8 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './components/_helpers/authGuard.components';
 import { Role } from './model/role';
 
-
+import { CategoriesComponent } from './components/categories/categories.component';
 import { TrainingsComponent } from './components/trainings/trainings.component';
+import { CategoryTrainingsComponent } from './components/categoryTraining/categoryTrainings.component';
 import { CaddyComponent } from './components/caddy/caddy.component';
 import { NotFoundComponent } from './components/notFound/notFound.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -18,7 +19,11 @@ import { ListTrainingsComponent } from './components/admin/listTraining/listTrai
 
 
 const routes: Routes = [
-  { path: 'trainings',component:TrainingsComponent  },
+  { path: 'categories', component: CategoriesComponent },
+  { path: 'trainings', component: TrainingsComponent },
+  {
+    path: 'trainingsByCategory/:id', component: CategoryTrainingsComponent
+  },
   {path: 'caddy', component: CaddyComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
@@ -52,7 +57,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{onSameUrlNavigation:'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

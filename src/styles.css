@@ -598,6 +598,7 @@ li {
   background: #fff;
   padding: 4px;
   width: 400px;
+  height: 300px;
   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
 }
 
@@ -1279,4 +1280,22 @@ p {
 #orderCard,#customerNotes,#shippingInfo,#payInfo{
   border: 1px solid coral;
    box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
+}
+
+/* ********  card categories */
+.cityCard {
+  cursor: pointer;
+  width: 250px;
+  background-image: url("/assets/img/presentation.png");
+  background-position: center;
+  height: 150px !important;
+  margin: 20px;
+  box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
+}
+
+.cityCard .card-body {
+  top: 50px
+}
+.clickedCat{
+box-shadow: 10px 10px 5px 0px rgba(106, 29, 230, 0.75);
 }

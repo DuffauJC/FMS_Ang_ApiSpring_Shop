@@ -2,6 +2,9 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { CartService } from './services/cart.service';
 import { Customer } from './model/customer.model';
+import { Router } from '@angular/router';
+import { ApiService } from './services/api.service';
+
 
 @Component({
   selector: 'app-root',
@@ -18,9 +21,8 @@ export class AppComponent implements OnInit, DoCheck {
   caddySize = 0
   admin = false
 
-
   constructor(private authenticateService: AuthenticateService,
-    private cartService: CartService,
+    private cartService: CartService, private apiservice: ApiService, private router: Router
   ) {
     this.customer = new Customer("unknown", "", "", "", "", "", "")
   }

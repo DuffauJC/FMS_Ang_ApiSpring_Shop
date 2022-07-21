@@ -1,0 +1,52 @@
+<div class="container">
+<h1>Les formations de la catégorie.</h1>
+  <div *ngIf="listTrainings else loading" class="md-6 d-flex flex-wrap listAdmin">
+
+    <!-- trainings-->
+    <div *ngFor="let training of listTrainings">
+
+    <div class="product-content product-wrap">
+      <div class="row">
+        <div class="col-md-5 col-sm-12 col-xs-12">
+          <div class="product-image">
+            <img src="{{training.imgURL}}" alt="194x228" class="img-responsive">
+          </div>
+        </div>
+        <div class="col-md-7 col-sm-12 col-xs-12">
+          <div class="product-deatil">
+            <p class="price-container">
+              <span>{{training.price}} €</span>
+            </p>
+            <span class="tag1"></span>
+          </div>
+          <div class="description">
+            <h6>{{training.description}}</h6>
+          </div>
+          <div class="cat-name">
+            <!-- <h6>{{training.category.name}}</h6> -->
+          </div>
+          <div class="product-info smart-form">
+            <div class="row">
+              <div class="sold_stars ml-auto"> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i
+                  class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+              </div>
+              <button class="cart-button" (click)="onAddToCart(training)"> <span class=" add-to-cart">Add to
+                  cart</span>
+                <span class="added">Item
+                  added</span> <i class="fa fa-plus"></i> <i class="fa fa-circle-thin"></i> <i class="fa fa-check"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+
+  </div>
+
+  <ng-template #loading>
+    <div>Loading...</div>
+  </ng-template>
+</div>
