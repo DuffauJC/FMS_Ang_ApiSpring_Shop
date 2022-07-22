@@ -11,7 +11,7 @@ import { AuthenticateService } from 'src/app/services/authentificate.service';
 export class LoginComponent implements OnInit {
     ngForm: FormGroup
     data = {
-        email: "",
+        mail: "",
         password: ""
     }
     display = false
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
         private router: Router) {
 
         this.ngForm = new FormGroup({
-            email: new FormControl(this.data.email),
+            mail: new FormControl(this.data.mail),
             password: new FormControl(this.data.password)
         })
     }
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     onLogin(form: FormGroup): void {
         //console.log(form.value);
         if (form.valid) {
-            this.data.email = form.value.email
+            this.data.mail = form.value.mail
             this.data.password = form.value.password
 
             //console.log(this.data)

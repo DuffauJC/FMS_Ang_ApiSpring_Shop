@@ -12,20 +12,20 @@ export class AuthenticateService {
     }
     // login verification
     veriFyLogin(data: any) {
-       // console.log(data)
+        //console.log(data)
         
-        this.apiService.getCustomer(data.email).subscribe(response => {
-            //console.log(response[0])
+        this.apiService.getCustomer(data.mail).subscribe(response => {
+            //console.log(response)
 
             // if existant user mail in response && decode password verif
-            if (response[0].email === data.email && window.atob(response[0].password) === data.password) {
+            if (response.mail === data.mail && window.atob(response.password) === data.password) {
                 this.setCustomerInStorage({
-                    email: response[0].email,
-                    name: response[0].name,
-                    firstName: response[0].firstName,
-                    address: response[0].address,
-                    phoneNumber:response[0].phoneNumber,
-                    role: response[0].role
+                    mail: response.mail,
+                    name: response.name,
+                    firstName: response.firstName,
+                    address: response.address,
+                    phone:response.phone,
+                    role: response.role
                 })
                 this.ok = true
             } else {

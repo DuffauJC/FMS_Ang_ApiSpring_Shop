@@ -35,16 +35,17 @@ export class ApiService {
     // save customer in bdd
     public postCustomer(data: any) {
         //console.log(data);
-       return this.http.post<any>(environment.host + "/api/customers", data)
+       return this.http.post<any>(environment.host + "/api/customer", data)
        
     }
     // get customer with mail param
-    public getCustomer(email: string) {
-        //console.log(email)
-        let queryParams = new HttpParams();
-        queryParams = queryParams.append("email", email);
+    public getCustomer(mail: string) {
+        //console.log(mail)
+        //let queryParams = new HttpParams();
+        //queryParams = queryParams.append("mail", mail);
         //console.log(queryParams)
-        return this.http.get<Customer[]>(environment.host + "/api/customers", { params: queryParams })
+        //return this.http.get<Customer[]>(environment.host + "/api/customer", { params: queryParams })
+        return this.http.get<any>(environment.host + "/api/customer/"+mail)
     }
 
     // categories
