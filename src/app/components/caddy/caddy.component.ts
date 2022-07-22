@@ -53,7 +53,9 @@ export class CaddyComponent implements OnInit, DoCheck {
         if (customer.firstName === "unknown") {
             this.problemOrder = true
         } else {
-            this.router.navigateByUrl('order')
+            // ajouter méthode de création commande
+            this.cartService.saveOrder(customer.id)
+           // this.router.navigateByUrl('order')
         }
     }
 }

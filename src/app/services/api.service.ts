@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Customer } from '../model/customer.model';
 import { Observable } from 'rxjs';
 import { Category } from '../model/category.model';
+import { Orders } from '../model/orders.model';
 
 @Injectable({ providedIn: 'root' })
 
@@ -53,6 +54,13 @@ export class ApiService {
         return this.http.get<Category[]>(environment.host + "/api/categories")
     }
     public getTrainingsByCategoryId(id: any) {
-        return this.http.get<any>(environment.host + "/categories/" + id+"/trainings")
+       // return this.http.get<any>(environment.host + "/categories/" + id + "/trainings")
+        return this.http.get<Training[]>(environment.host + "/api/trainingsByCategory/" + id )
+    }
+    // save order in bdd
+    public postOrder(data: any) {
+        //console.log(data);
+        return this.http.post<any>(environment.host + "/api/orders", data)
+
     }
 }

@@ -11,6 +11,7 @@ export class OrderComponent implements OnInit, DoCheck {
   dateOrder: Date = new Date();
   problemOrder = false
   displayStyle = "none";
+  
   constructor(public cartService: CartService,
     private router: Router,
     public authenticateService: AuthenticateService) { }

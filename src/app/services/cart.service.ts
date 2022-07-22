@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Orders } from '../model/orders.model';
 import { Training } from '../model/training.model';
-
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ export class CartService {
   //Initialisation du local storage (panier)
   caddy = window.localStorage;
 
-  constructor() {
+  constructor(private http: HttpClient, private apiservice: ApiService) {
+
     // au démarrage du service, je récupère le contenu du local storage : command en cours
     let cart = this.caddy.getItem('cart');
     if (cart) {  // le panier existe déjà
@@ -61,6 +64,17 @@ export class CartService {
   clear() {
     this.cart.clear();
     localStorage.removeItem('cart')
+  }
+
+  // creation commande
+  saveOrder(id:any) {
+    
+    let data = {
+      customerId: id,
+      date: new Date(),
+      amount:this.getTotal()
+    }
+    this.apiservice.postOrder(data)
   }
 
 }

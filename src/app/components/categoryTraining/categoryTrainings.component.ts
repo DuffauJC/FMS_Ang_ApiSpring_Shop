@@ -36,8 +36,8 @@ export class CategoryTrainingsComponent implements OnInit, DoCheck {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.apiservice.getTrainingsByCategoryId(id).subscribe({
-      //next:(data)=>console.log(data._embedded.trainings),
-      next: (data) => this.listTrainings = data._embedded.trainings,
+      //next:(data)=>console.log(data),
+      next: (data) => this.listTrainings = data,
       error: (err) => this.error = err.message,
       complete: () => this.error = null
     })

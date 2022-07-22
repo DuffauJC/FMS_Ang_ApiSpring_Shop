@@ -20,6 +20,7 @@ export class AuthenticateService {
             // if existant user mail in response && decode password verif
             if (response.mail === data.mail && window.atob(response.password) === data.password) {
                 this.setCustomerInStorage({
+                    id:response.id,
                     mail: response.mail,
                     name: response.name,
                     firstName: response.firstName,
