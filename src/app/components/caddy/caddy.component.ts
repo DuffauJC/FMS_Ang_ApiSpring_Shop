@@ -55,7 +55,7 @@ export class CaddyComponent implements OnInit, DoCheck {
         } else {
             // ajouter méthode de création commande
             this.cartService.saveOrder(customer.id)
-           // this.router.navigateByUrl('order')
+            this.router.navigateByUrl('order')
         }
     }
 }

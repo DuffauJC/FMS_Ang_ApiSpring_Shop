@@ -3,9 +3,10 @@ import { HttpClient,HttpParams } from '@angular/common/http';
 import { Training } from '../model/training.model';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../model/customer.model';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { Category } from '../model/category.model';
 import { Orders } from '../model/orders.model';
+import { OrdersItem } from '../model/ordersItem.model';
 
 @Injectable({ providedIn: 'root' })
 
@@ -58,9 +59,11 @@ export class ApiService {
         return this.http.get<Training[]>(environment.host + "/api/trainingsByCategory/" + id )
     }
     // save order in bdd
-    public postOrder(data: any) {
-        //console.log(data);
-        return this.http.post<any>(environment.host + "/api/orders", data)
-
+    public postOrder(order: any) {
+        return this.http.post<any>(environment.host + "/api/orders", order)
+    }
+    // save order in bdd
+    public postOrdersItem(orderItem: OrdersItem) {
+        return this.http.post<OrdersItem>(environment.host + "/api/ordersItem", orderItem).subscribe()
     }
 }
