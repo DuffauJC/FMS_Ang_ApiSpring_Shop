@@ -19,7 +19,7 @@ export class CategoryTrainingsComponent implements OnInit, DoCheck {
 
   constructor(
     private router: Router, private apiservice: ApiService, private route: ActivatedRoute,
-    private cartService: CartService, private location: Location
+    private cartService: CartService
   ) {
 
   }

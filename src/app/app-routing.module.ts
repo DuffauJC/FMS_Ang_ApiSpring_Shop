@@ -29,6 +29,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'order', component: OrderComponent },
+  { path: 'order/:id', component: OrderComponent },
+
   { path: 'login', component: LoginComponent },
 
   {

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Orders } from '../model/orders.model';
+import { Router } from '@angular/router';
 import { OrdersItem } from '../model/ordersItem.model';
 import { Training } from '../model/training.model';
 import { ApiService } from './api.service';
@@ -13,9 +13,9 @@ export class CartService {
   private cart: Map<number, Training>;
   //Initialisation du local storage (panier)
   caddy = window.localStorage;
- 
-  constructor(private http: HttpClient, private apiservice: ApiService) {
- 
+
+  constructor(private http: HttpClient, private apiservice: ApiService, private router: Router) {
+
     // au démarrage du service, je récupère le contenu du local storage : command en cours
     let cart = this.caddy.getItem('cart');
     if (cart) {  // le panier existe déjà
@@ -69,7 +69,7 @@ export class CartService {
 
   // creation commande + ajout des items après recup de l'id de la commande
   saveOrder(id: number) {
-
+    
     let order = {
       customerId: id,
       date: new Date(),
@@ -77,11 +77,17 @@ export class CartService {
     }
     let items = this.loadCaddy()
 
-    this.apiservice.postOrder(order).subscribe({
+    return this.apiservice.postOrder(order).subscribe({
       //next: (data) => this.ordersId = data.ordersId
-      next: (data) => items.forEach((e) => this.apiservice.postOrdersItem(new OrdersItem(data.ordersId, e.quantity, e.id)))
+      next: (data) => {
+        items.forEach((e) => this.apiservice.postOrdersItem(new OrdersItem(data.ordersId, e.quantity, e.id)))
+        this.router.navigateByUrl('order/'+data.ordersId)
+       
+        
+      }
+
     })
-    
+
   }
 
 }

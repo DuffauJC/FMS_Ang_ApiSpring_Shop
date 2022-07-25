@@ -66,4 +66,10 @@ export class ApiService {
     public postOrdersItem(orderItem: OrdersItem) {
         return this.http.post<OrdersItem>(environment.host + "/api/ordersItem", orderItem).subscribe()
     }
+    public getOrderById(id: number) {
+        return this.http.get<Orders>(environment.host + "/api/orders/" + id);
+    }
+    public getOrderItemsById(id: number) {
+        return this.http.get<any>(environment.host + "/api/ordersItemByOrder/" + id);
+    }
 }
