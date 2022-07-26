@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams } from '@angular/common/http';
 import { Training } from '../model/training.model';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../model/customer.model';
@@ -26,11 +26,14 @@ export class ApiService {
 
     }
     // upload img
-
-
-    public delItem(Training: Training) {
+    public uploadImage(file: File): Observable<Response> {
+        const formData: FormData = new FormData();
+        formData.append('file', file);
+        return this.http.post<any>(environment.host + "/api/uploadfile", formData)
+    }
+    public delItem(training: Training) {
         //console.log(Training)
-        return this.http.delete(environment.host + "/api/trainings/" + Training.id)
+        return this.http.delete(environment.host + "/api/trainings/" + training.id)
 
     }
     public updateTraining(data: any) {

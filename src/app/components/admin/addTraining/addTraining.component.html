@@ -1,7 +1,7 @@
 <div class="container">
   <div class="modal-content" id="addFormSize">
     <div class="modal-header">
-    
+
     </div>
     <div class="login-container animated fadeInDown bootstrap snippets bootdeys">
       <div class="loginbox bg-white">
@@ -26,8 +26,15 @@
           </div>
           <div class="loginbox-textbox">
             <label class="control-label">Img : </label>
-            <input type="file" name="imgURL" class="form-control" placeholder="imgURL" formControlName="imgURL" required>
+            <input type="file" name="imgURL" class="form-control" placeholder="imgURL" formControlName="imgURL"
+              accept="image/*" #imageInput (change)="showPreview(imageInput)">
           </div>
+          <!-- img show -->
+        <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+          <img [src]="imageURL" [alt]="ngForm.value.name">
+        </div>
+          <!-- ----------- -->
+
           <div class="loginbox-submit">
             <button type="submit" [disabled]="!ngForm.valid" class="btn btn-success btn-block" id="modal-btn">
               <span>Submit</span>
@@ -42,13 +49,12 @@
             <div *ngIf="display" class=" alert alert-success col-md-12">
               Formation enregistrée.
             </div>
-             <div *ngIf="problemAdmin" class=" alert alert-danger col-md-12 ">
-               Vous avec été déconnécté, reconnectez-vous.
-             </div>
+            <div *ngIf="problemAdmin" class=" alert alert-danger col-md-12 ">
+              Vous avec été déconnécté, reconnectez-vous.
+            </div>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
- 

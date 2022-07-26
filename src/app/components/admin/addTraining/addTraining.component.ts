@@ -22,7 +22,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
         quantity: 1,
         imgURL: "unknown.png",
     }
-
+    imageURL: string;
     constructor(private apiService: ApiService,
         private router: Router, public authenticateService: AuthenticateService
     ) {
@@ -36,6 +36,23 @@ export class AddTrainingComponent implements OnInit, DoCheck {
 
         })
     }
+
+    /// img 
+    // Image Preview
+    showPreview(imageInput: any) {
+        const file = imageInput.files[0];
+        this.ngForm.patchValue({
+            avatar: file
+        });
+        this.ngForm.get(imgURL).updateValueAndValidity()
+        // File Preview
+        const reader = new FileReader();
+        reader.onload = () => {
+            this.imageURL = reader.result as string;
+        }
+        reader.readAsDataURL(file)
+    }
+
 
     ngOnInit() {
         this.formData()
