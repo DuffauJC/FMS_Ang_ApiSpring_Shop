@@ -77,7 +77,7 @@ export class CartService {
     }
     let items = this.loadCaddy()
 
-    return this.apiservice.postOrder(order).subscribe({
+    this.apiservice.postOrder(order).subscribe({
       //next: (data) => this.ordersId = data.ordersId
       next: (data) => {
         items.forEach((e) => this.apiservice.postOrdersItem(new OrdersItem(data.ordersId, e.quantity, e.id)))

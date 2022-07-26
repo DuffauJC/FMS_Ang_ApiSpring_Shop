@@ -24,7 +24,12 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "C:/Users/Stagiaires08P/imgSpringShopping",
+                "output": "./assets/img"
+              }
             ],
             "styles": [
               "src/styles.css",
