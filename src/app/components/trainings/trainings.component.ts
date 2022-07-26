@@ -60,7 +60,6 @@ export class TrainingsComponent implements OnInit, DoCheck {
       next: (data) => this.listTrainings = data,
       error: (err) => this.error = err.message,
       complete: () => this.error = null
-
     })
   }
 

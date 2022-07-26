@@ -20,7 +20,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
         description: "",
         price: 0,
         quantity: 1,
-        imgURL: "assets/img/unknown.png",
+        imgURL: "unknown.png",
     }
 
     constructor(private apiService: ApiService,
@@ -86,7 +86,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
             description: "",
             price: 0,
             quantity: 1,
-            imgURL: "assets/img/unknown.png",
+            imgURL: "unknown.png",
         }
         this.ngForm = new FormGroup({
             name: new FormControl(this.data.name),

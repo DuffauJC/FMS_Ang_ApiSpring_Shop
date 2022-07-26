@@ -7,7 +7,7 @@
       <div class="loginbox bg-white">
         <div class="loginbox-social">
           <div class="social-title ">
-            <img src="{{data.imgURL}}" alt="194x228" class="img-responsive">
+            <img src="assets/img/{{data.imgURL}}" alt="194x228" class="img-responsive" />
           </div>
         </div>
         <form [formGroup]="ngForm" (ngSubmit)="onSaveTraining(ngForm)">
@@ -25,8 +25,8 @@
             <input type="text" name="price" class="form-control" placeholder="prix" formControlName="price" required>
           </div>
           <div class="loginbox-textbox">
-            <label class="control-label">Img url : </label>
-            <input type="text" name="imgURL" class="form-control" placeholder="imgURL" formControlName="imgURL" required>
+            <label class="control-label">Img : </label>
+            <input type="file" name="imgURL" class="form-control" placeholder="imgURL" formControlName="imgURL" required>
           </div>
           <div class="loginbox-submit">
             <button type="submit" [disabled]="!ngForm.valid" class="btn btn-success btn-block" id="modal-btn">

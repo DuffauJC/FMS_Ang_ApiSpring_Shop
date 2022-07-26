@@ -29,10 +29,10 @@ export class HomeAdminComponent implements OnInit, DoCheck {
         }
     }
     addArticle() {
-        this.router.navigateByUrl('addArticle')
+        this.router.navigateByUrl('addTraining')
     }
     showArticles() {
-        this.router.navigateByUrl('listArticles')
+        this.router.navigateByUrl('listTrainings')
     }
 
 }
