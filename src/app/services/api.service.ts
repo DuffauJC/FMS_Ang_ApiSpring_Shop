@@ -21,7 +21,7 @@ export class ApiService {
     }
 
     public postTraining(data: any) {
-        //console.log(data);
+        console.log(data);
         return this.http.post<any>(environment.host + "/api/trainings", data)
 
     }
@@ -65,6 +65,11 @@ export class ApiService {
         // return this.http.get<any>(environment.host + "/categories/" + id + "/trainings")
         return this.http.get<Training[]>(environment.host + "/api/trainingsByCategory/" + id)
     }
+    public getCategoryById(id: number) {
+        return this.http.get<Category>(environment.host + "/api/categoryById/" + id);
+    }
+
+
     // save order in bdd
     public postOrder(order: any) {
         return this.http.post<any>(environment.host + "/api/orders", order)
