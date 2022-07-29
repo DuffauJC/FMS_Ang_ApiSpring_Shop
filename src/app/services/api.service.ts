@@ -21,7 +21,7 @@ export class ApiService {
     }
 
     public postTraining(data: any) {
-        console.log(data);
+       // console.log(data);
         return this.http.post<any>(environment.host + "/api/trainings", data)
 
     }

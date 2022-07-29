@@ -23,21 +23,13 @@ export class AddTrainingComponent implements OnInit, DoCheck {
     model: Category | undefined
     listCategories: Category[] | undefined
 
-    training = {
-        name: "",
-        description: "",
-        price: 0,
-        quantity: 1,
-        imgURL: "unknown.png",
-        category: new Category(0, "", "")
-    }
     data = {
         name: "",
         description: "",
         price: 0,
         quantity: 1,
         imgURL: "unknown.png",
-        categoryId: 0
+        catId: 0
     }
     file!: File;
     selectedFile!: ImageSnippet;
@@ -52,8 +44,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
             price: new FormControl(this.data.price),
             quantity: new FormControl(this.data.quantity),
             imgURL: new FormControl(this.data.imgURL),
-            categoryId: new FormControl(this.data.categoryId),
-
+            catId: new FormControl(this.data.catId),
         })
     }
 
@@ -102,31 +93,15 @@ export class AddTrainingComponent implements OnInit, DoCheck {
         this.data.price = form.value.price
         this.data.quantity = this.data.quantity
         this.data.imgURL = this.file.name
-        this.data.categoryId = parseInt(form.value.categoryId)
+        this.data.catId = parseInt(form.value.catId)
 
         document.getElementById('modal-btn')?.classList.toggle("is_active")
-        this.training = {
-            name: this.data.name,
-            description: this.data.description,
-            price: this.data.price,
-            quantity: this.data.quantity,
-            imgURL: this.file.name,
-            category: new Category(0, "", "")
-        }
-        this.apiService.getCategoryById(this.data.categoryId).subscribe({
-            next: (data) => {
-
-
-                this.training.category.id = data.id
-                this.training.category.description = data.description
-                this.training.category.name = data.name
-            }
+ 
+        this.apiService.uploadImage(this.selectedFile.file).subscribe({
+           // next:(data)=>console.log(data)
         })
-
-        this.apiService.uploadImage(this.selectedFile.file)
-        this.apiService.postTraining(this.training)
+        this.apiService.postTraining(this.data)
             .subscribe({
-                next: (data) => console.log(data),
                 error: (err) => this.error = err.message,
                 complete: () => this.router.navigateByUrl('listTrainings')
             })
@@ -144,7 +119,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
             price: 0,
             quantity: 1,
             imgURL: "unknown.png",
-            categoryId: 0
+            catId: 0
         }
         this.ngForm = new FormGroup({
             name: new FormControl(this.data.name),
@@ -152,7 +127,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
             price: new FormControl(this.data.price),
             quantity: new FormControl(this.data.quantity),
             imgURL: new FormControl(this.data.imgURL),
-            categoryId: new FormControl(this.data.categoryId)
+            catId: new FormControl(this.data.catId)
         })
     }
 }
