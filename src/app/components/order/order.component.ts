@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { ApiService } from 'src/app/services/api.service';
-import { OrdersItem } from 'src/app/model/ordersItem.model';
+
 
 @Component({
   selector: 'app-order',

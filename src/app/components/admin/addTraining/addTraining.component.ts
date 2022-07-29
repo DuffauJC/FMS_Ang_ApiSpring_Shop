@@ -5,11 +5,6 @@ import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { ApiService } from 'src/app/services/api.service';
 import { Category } from 'src/app/model/category.model';
 
-
-
-class ImageSnippet {
-    constructor(public file: File) { }
-}
 @Component({
     selector: 'app-addTraining',
     templateUrl: 'addTraining.component.html'
@@ -32,7 +27,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
         catId: 0
     }
     file!: File;
-    selectedFile!: ImageSnippet;
+
 
     constructor(private apiService: ApiService,
         private router: Router, public authenticateService: AuthenticateService
@@ -54,7 +49,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
         this.file = event.target.files[0];
         // console.log(this.file.name)
         this.data.imgURL = this.file.name
-        this.selectedFile = new ImageSnippet(this.file);
+       
     }
     ////////////////
 
@@ -97,7 +92,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
 
         document.getElementById('modal-btn')?.classList.toggle("is_active")
  
-        this.apiService.uploadImage(this.selectedFile.file).subscribe({
+        this.apiService.uploadImage(this.file).subscribe({
            // next:(data)=>console.log(data)
         })
         this.apiService.postTraining(this.data)

@@ -61,7 +61,7 @@
           <div class="loginbox bg-white">
             <div class="loginbox-social">
               <div class="social-title ">
-                <img src="{{data.imgURL}}" alt="194x228" class="img-responsive">
+                <img src="http://localhost:8080/api/download/{{data.imgURL}}" alt="194x228" class="img-responsive">
               </div>
             </div>
             <form [formGroup]="ngForm" (ngSubmit)="onUpdateTraining(ngForm)">
@@ -73,11 +73,24 @@
                   formControlName="description">
               </div>
               <div class="loginbox-textbox">
-                <input type="text" name="price" class="form-control" placeholder="prix" f formControlName="price">
+                <input type="text" name="price" class="form-control" placeholder="prix" formControlName="price">
               </div>
+                <!-- category -->
+                <div class="loginbox-textbox">
+                  <label class="control-label">Catégorie : </label>
+                  <select  [(ngModel)]="model" type="text" name="category" class="form-control" placeholder="Catégorie"
+                    formControlName="catId" required>
+                    <option *ngFor="let item of listCategories" [value]="item.id" >{{item.name}}</option>
+                      <option  selected>{{data.catId}}</option>
+                  </select>
+                </div>
               <div class="loginbox-textbox">
-                <input type="text" name="imgURL" class="form-control" placeholder="imgURL" formControlName="imgURL">
+                <label class="control-label">Img : </label>
+                <input type="file" name="imgURL" class="form-control" placeholder="imgURL" formControlName="imgURL" accept="image/*"
+                  (change)="processFile($event)">
               </div>
+              
+              <!-- ----------- -->
               <div class="loginbox-submit">
                 <button type="submit" [disabled]="!ngForm.valid" class="btn btn-success btn-block" id="modal-btn">
                   <span>Submit</span>

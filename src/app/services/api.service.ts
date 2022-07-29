@@ -38,7 +38,7 @@ export class ApiService {
     }
     public updateTraining(data: any) {
         //console.log(data);
-        return this.http.put<any>(environment.host + "/api/trainings/" + data.id, data)
+        return this.http.put<any>(environment.host + "/api/updateTraining",data)
 
     }
     // save customer in bdd

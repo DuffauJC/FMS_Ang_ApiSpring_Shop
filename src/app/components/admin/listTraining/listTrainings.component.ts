@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Training } from 'src/app/model/training.model';
 import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { ApiService } from 'src/app/services/api.service';
+import { Category } from 'src/app/model/category.model';
 
 @Component({
     selector: 'app-listTrainings',
@@ -13,21 +14,26 @@ import { ApiService } from 'src/app/services/api.service';
 export class ListTrainingsComponent implements OnInit, DoCheck {
     ngForm: FormGroup
     listTrainings: Training[] | undefined
+    model: Category | undefined
+    listCategories: Category[] | undefined
     error = null
     displayStyle = "none";
     displayBlur = "blur(0)"
     display = false
     problemAdmin = false
+    selectedFile = false
 
     data = {
         id: 0,
         name: "",
         description: "",
         price: 0,
-        quantity: 0,
+        quantity: 1,
         imgURL: "",
+        catId: 0
     }
 
+    file!: File;
 
     constructor(
         private apiService: ApiService,
@@ -38,8 +44,9 @@ export class ListTrainingsComponent implements OnInit, DoCheck {
             name: "",
             description: "",
             price: 0,
-            quantity: 0,
-            imgURL: "assets/img/unknown.png",
+            quantity: 1,
+            imgURL: "unknown.png",
+            catId: 0
         }
         this.ngForm = new FormGroup({
             name: new FormControl(this.data.name),
@@ -47,19 +54,36 @@ export class ListTrainingsComponent implements OnInit, DoCheck {
             price: new FormControl(this.data.price),
             quantity: new FormControl(this.data.quantity),
             imgURL: new FormControl(this.data.imgURL),
-
+            catId: new FormControl(this.data.catId),
         })
     }
     ngOnInit() {
         this.getAllTrainings()
+        this.getAllCategories()
     }
     ngDoCheck(): void {
         this.verifySession()
     }
+    /// img 
+    processFile(event: any) {
+        // const file: File = event.target.files[0];
+        this.file = event.target.files[0];
+        //console.log(this.file.name)
+        this.selectedFile = true
 
+    }
+    ////////////////
     getAllTrainings() {
         this.apiService.getTrainings().subscribe({
             next: (data) => this.listTrainings = data,
+            error: (err) => this.error = err.message,
+            complete: () => this.error = null
+
+        })
+    }
+    getAllCategories() {
+        this.apiService.getCategories().subscribe({
+            next: (data) => this.listCategories = data,
             error: (err) => this.error = err.message,
             complete: () => this.error = null
 
@@ -76,31 +100,32 @@ export class ListTrainingsComponent implements OnInit, DoCheck {
             }, 1500)
         }
     }
-    delItem(Training: Training) {
+    delItem(training: Training) {
         if (confirm("Vous êtes sur de vouloir supprimer cette formation ?")) {
-            this.apiService.delItem(Training)
+            this.apiService.delItem(training)
                 .subscribe({
                     next: (data) => console.log(data),
                     error: (err) => this.error = err.message,
                     complete: () => this.getAllTrainings()
-            })
+                })
         }
 
     }
-    openPopup(Training: Training) {
+    openPopup(training: Training) {
         this.displayStyle = "block";
         this.displayBlur = "blur(4px)"
 
-        // this.ngForm = new FormGroup({
-        //     name: new FormControl(Training.name),
-        //     description: new FormControl(Training.description),
-        //     price: new FormControl(Training.price),
-        //     quantity: new FormControl(Training.quantity),
-        //     imgURL: new FormControl(Training.imgURL),
-
-        // })
-        this.data.imgURL = Training.imgURL
-        this.data.id = Training.id
+        this.ngForm = new FormGroup({
+            name: new FormControl(training.name),
+            description: new FormControl(training.description),
+            price: new FormControl(training.price),
+            quantity: new FormControl(training.quantity),
+            imgURL: new FormControl(training.imgURL),
+            catId: new FormControl(training.category.id),
+        })
+        this.data.imgURL = training.imgURL
+        this.data.id = training.id
+        this.data.catId = training.category.id
     }
     closePopup() {
         this.displayStyle = "none";
@@ -110,14 +135,21 @@ export class ListTrainingsComponent implements OnInit, DoCheck {
 
         //console.log(form.value)
 
-
         this.data.name = form.value.name
         this.data.description = form.value.description
         this.data.price = form.value.price
-        this.data.imgURL = form.value.imgURL
+        this.data.catId = parseInt(form.value.catId)
+
+        if (this.selectedFile) {
+            this.data.imgURL = this.file.name
+        }
+        //console.log(this.data)
 
         document.getElementById('modal-btn')?.classList.toggle('is_active')
 
+        this.apiService.uploadImage(this.file).subscribe({
+            // next:(data)=>console.log(data)
+        })
         this.apiService.updateTraining(this.data)
             .subscribe({
                 next: (data) => console.log(data),
