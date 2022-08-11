@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Training } from '../model/training.model';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../model/customer.model';
@@ -48,13 +48,16 @@ export class ApiService {
 
     }
     // get customer with mail param
-    public getCustomer(mail: string) {
-        //console.log(mail)
-        //let queryParams = new HttpParams();
-        //queryParams = queryParams.append("mail", mail);
-        //console.log(queryParams)
-        //return this.http.get<Customer[]>(environment.host + "/api/customer", { params: queryParams })
-        return this.http.get<any>(environment.host + "/api/customer/" + mail)
+    public login(data: any) {
+        // let headerss = new HttpHeaders({
+        //     'Content-Type': 'application/json',
+        //     'Access-Control-Allow-Origin': 'http://localhost:4200',
+        //     'Access-Control-Allow-Headers': 'Content-Type',
+
+        // });
+
+        //return this.http.post<any>(environment.hostAuth, { payload }, { headers: headerss });
+        return this.http.post<any>(environment.host + "/api/auth/signin", data)
     }
 
     // categories

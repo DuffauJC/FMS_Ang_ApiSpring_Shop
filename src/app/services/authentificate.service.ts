@@ -14,20 +14,18 @@ export class AuthenticateService {
     veriFyLogin(data: any) {
         //console.log(data)
         
-        this.apiService.getCustomer(data.mail).subscribe(response => {
-            //console.log(response)
+        this.apiService.login(data).subscribe(response => {
+            console.log(response.accessToken)
 
-            // if existant user mail in response && decode password verif
-            if (response.mail === data.mail && window.atob(response.password) === data.password) {
+            // if accesstoken
+            if (response.accessToken !="") {
                 this.setCustomerInStorage({
                     id:response.id,
-                    mail: response.mail,
-                    name: response.name,
-                    firstName: response.firstName,
-                    address: response.address,
-                    phone:response.phone,
-                    role: response.role
+                    email: response.email,
+                    username: response.username,
+                    roles: response.role
                 })
+                localStorage.setItem('accessToken',JSON.stringify(response.accessToken))
                 this.ok = true
             } else {
                 this.ok = false
@@ -46,7 +44,6 @@ export class AuthenticateService {
     // set customer in storage
     setCustomerInStorage(data: any) {
         localStorage.setItem('customer', JSON.stringify(data));
-
     }
     // get customer from storage
     getCustomerFromStorage() {

@@ -24,7 +24,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
         price: 0,
         quantity: 1,
         imgURL: "unknown.png",
-        catId: 0
+        category:{} as Category
     }
     file!: File;
 
@@ -39,7 +39,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
             price: new FormControl(this.data.price),
             quantity: new FormControl(this.data.quantity),
             imgURL: new FormControl(this.data.imgURL),
-            catId: new FormControl(this.data.catId),
+            category: new FormControl(this.data.category),
         })
     }
 
@@ -88,7 +88,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
         this.data.price = form.value.price
         this.data.quantity = this.data.quantity
         this.data.imgURL = this.file.name
-        this.data.catId = parseInt(form.value.catId)
+        this.data.category = form.value.category
 
         document.getElementById('modal-btn')?.classList.toggle("is_active")
  
@@ -114,7 +114,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
             price: 0,
             quantity: 1,
             imgURL: "unknown.png",
-            catId: 0
+            category: {} as Category
         }
         this.ngForm = new FormGroup({
             name: new FormControl(this.data.name),
@@ -122,7 +122,7 @@ export class AddTrainingComponent implements OnInit, DoCheck {
             price: new FormControl(this.data.price),
             quantity: new FormControl(this.data.quantity),
             imgURL: new FormControl(this.data.imgURL),
-            catId: new FormControl(this.data.catId)
+            category: new FormControl(this.data.category),
         })
     }
 }

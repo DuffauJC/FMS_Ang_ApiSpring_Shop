@@ -32,8 +32,9 @@
           <div class="loginbox-textbox">
             <label class="control-label">Catégorie : </label>
             <select [(ngModel)]="model" type="number" name="category" class="form-control" placeholder="Catégorie"
-              formControlName="catId" required>
+              formControlName="category" required>
               <option *ngFor="let item of listCategories" [value]="item.id">{{item.name}}</option>
+              <!-- <option *ngFor="let item of listCategories" [value]="item">{{item.name}}</option> -->
             </select>
           </div>
           <!--  -->

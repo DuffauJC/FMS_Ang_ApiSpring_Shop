@@ -11,7 +11,7 @@ import { AuthenticateService } from 'src/app/services/authentificate.service';
 export class LoginComponent implements OnInit {
     ngForm: FormGroup
     data = {
-        mail: "",
+        username: "",
         password: ""
     }
     display = false
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
         private router: Router) {
 
         this.ngForm = new FormGroup({
-            mail: new FormControl(this.data.mail),
+            username: new FormControl(this.data.username),
             password: new FormControl(this.data.password)
         })
     }
@@ -33,24 +33,25 @@ export class LoginComponent implements OnInit {
     onLogin(form: FormGroup): void {
         //console.log(form.value);
         if (form.valid) {
-            this.data.mail = form.value.mail
+            this.data.username = form.value.username
             this.data.password = form.value.password
 
             //console.log(this.data)
             document.getElementById('modal-btn')?.classList.toggle("is_active")
             let ok = this.authenticateService.veriFyLogin(this.data)
-            if (ok) {
-                this.display = true
-                setTimeout(() => {
-                    this.display = false
-                    this.router.navigateByUrl('home')
-                }, 1500)
-            } else {
-                this.problemLogin = true
-            }
-            setTimeout(() => {
-                this.problemLogin = false
-            }, 1500)
+            console.log(ok)
+            // if (ok) {
+            //     this.display = true
+            //     setTimeout(() => {
+            //         this.display = false
+            //         this.router.navigateByUrl('home')
+            //     }, 1500)
+            // } else {
+            //     this.problemLogin = true
+            // }
+            // setTimeout(() => {
+            //     this.problemLogin = false
+            // }, 1500)
         }
 
     }
